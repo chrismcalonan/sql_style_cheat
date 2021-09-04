@@ -427,6 +427,48 @@ CREATE TABLE staff (
 
 ## Appendix
 
+### Column data types
+
+These are some suggested column data types to use for maximum compatibility between database engines.
+
+#### Character types:
+
+* CHAR
+* CLOB
+* VARCHAR
+
+#### Numeric types
+
+* Exact numeric types
+    * BIGINT
+    * DECIMAL
+    * DECFLOAT
+    * INTEGER
+    * NUMERIC
+    * SMALLINT
+* Approximate numeric types
+    * DOUBLE PRECISION
+    * FLOAT
+    * REAL
+
+#### Datetime types
+
+* DATE
+* TIME
+* TIMESTAMP
+
+#### Binary types:
+
+* BINARY
+* BLOB
+* VARBINARY
+
+#### Additional types
+
+* BOOLEAN
+* INTERVAL
+* XML
+
 ### Reserved keyword reference
 
 A list of ANSI SQL (92, 99 and 2003), MySQL 3 to 5.x, PostgreSQL 8.1, MS SQL Server 2000, MS ODBC and Oracle 10.2 reserved keywords.
@@ -1258,48 +1300,6 @@ YEAR_MONTH
 ZEROFILL
 ZONE
 ```
-
-### Column data types
-
-These are some suggested column data types to use for maximum compatibility between database engines.
-
-#### Character types:
-
-* CHAR
-* CLOB
-* VARCHAR
-
-#### Numeric types
-
-* Exact numeric types
-    * BIGINT
-    * DECIMAL
-    * DECFLOAT
-    * INTEGER
-    * NUMERIC
-    * SMALLINT
-* Approximate numeric types
-    * DOUBLE PRECISION
-    * FLOAT
-    * REAL
-
-#### Datetime types
-
-* DATE
-* TIME
-* TIMESTAMP
-
-#### Binary types:
-
-* BINARY
-* BLOB
-* VARBINARY
-
-#### Additional types
-
-* BOOLEAN
-* INTERVAL
-* XML
 
 
 [simon]: https://www.simonholywell.com/?utm_source=sqlstyle.guide&utm_medium=link&utm_campaign=md-document
