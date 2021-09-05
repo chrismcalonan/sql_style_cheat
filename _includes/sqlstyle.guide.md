@@ -2,11 +2,17 @@
 
 ## Overview
 
-You can use this set of guidelines, [fork them][fork] or make your own - the
-key here is that you pick a style and stick to it. To suggest changes
-or fix bugs please open an [issue][issue] or [pull request][pull] on GitHub.
+Forked from [SQL Style Guide][sqlstyleguide] by [Simon Holywell][simon].
 
-These guidelines are designed to be compatible with Joe Celko's [SQL Programming
+The version adds SQLite-specific details, and will also function as a bit of a 
+"cheat sheet" for people who don't use SQL every day.
+
+It's also the first time that the author has used Git or GitHub, so there are
+going to be growing pains.
+
+From Simon Holywell's original:
+
+"These guidelines are designed to be compatible with Joe Celko's [SQL Programming
 Style][celko] book to make adoption for teams who have already read that book
 easier. This guide is a little more opinionated in some areas and in others a
 little more relaxed. It is certainly more succinct where [Celko's book][celko]
@@ -17,8 +23,7 @@ project's code base or reference it here for anyone on the project to freely
 read—much harder with a physical book.
 
 SQL style guide by [Simon Holywell][simon] is licensed under a [Creative Commons 
-Attribution-ShareAlike 4.0 International License][licence].
-Based on a work at [https://www.sqlstyle.guide/][sqlstyleguide].
+Attribution-ShareAlike 4.0 International License][licence]."
 
 ## General
 
