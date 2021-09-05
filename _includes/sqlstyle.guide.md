@@ -427,47 +427,80 @@ CREATE TABLE staff (
 
 ## Appendix
 
+### SQLite Afinities and Data Type Interpretation Rules
+
+SQLite uses the following types of "Afinity" values:
+
+* INTEGER
+* REAL
+* NUMERIC
+* TEXT
+* BLOB
+
+SQLite interprets data types via the following rules:
+
+| Num | Rule
+| --- | ------------------------------------------------------------------ |
+|  1  | If the declared type contains the string "INT" then it is assigned |
+|     | INTEGER affinity.						                           |
+|  2  | If the declared type of the column contains any of the strings     |
+|     | "CHAR", "CLOB", or "TEXT" then that column has TEXT affinity.      |
+|     | Notice that the type VARCHAR contains the string "CHAR" and is     |
+|     | thus assigned TEXT affinity.                                       |
+|  3  | If the declared type for a column contains the string "BLOB" or if |
+|     | no type is specified then the column has affinity BLOB.            |
+|  4  | If the declared type for a column contains any of the strings      |
+|     | "REAL", "FLOA", or "DOUB" then the column has REAL affinity.       |
+|  5  | Otherwise, the affinity is NUMERIC.                                |
+
 ### Column data types
 
-These are some suggested column data types to use for maximum compatibility between database engines.
+These are some suggested column data types to use for maximum compatibility
+between database engines.  SQLite afinity (and rule) are in parenthesis.
 
 #### Character types:
 
-* CHAR
-* CLOB
-* VARCHAR
+* CHAR (TEXT, Rule 2)
+* CLOB (TEXT, Rule 2)
+* VARCHAR (TEXT, Rule 2)
 
 #### Numeric types
 
 * Exact numeric types
-    * BIGINT
-    * DECIMAL
-    * DECFLOAT
-    * INTEGER
-    * NUMERIC
-    * SMALLINT
+    * BIGINT (INTEGER, Rule 1)
+    * DECIMAL (NUMERIC, Rule 5)
+        * DECIMAL(p) or DECIMAL(p,s)
+        * p = precision (all digits)
+        * s = scale (digits left of decimal)
+    * DECFLOAT (REAL, Rule 4)
+    * INTEGER (INTEGER, Rule 1)
+    * NUMERIC (NUMERIC, Rule 5)
+        * NUMERIC(p) or NUMERIC(p,s)
+        * p = precision (all digits)
+        * s = scale (digits left of decimal)
+    * SMALLINT (INTEGER, Rule 1)
 * Approximate numeric types
     * DOUBLE PRECISION
-    * FLOAT
-    * REAL
+    * FLOAT (REAL, Rule 4)
+    * REAL (REAL, Rule 4)
 
 #### Datetime types
 
-* DATE
-* TIME
-* TIMESTAMP
+* DATE (NUMERIC, Rule 5)
+* TIME (NUMERIC, Rule 5)
+* TIMESTAMP (NUMERIC, Rule 5)
 
 #### Binary types:
 
-* BINARY
-* BLOB
-* VARBINARY
+* BINARY (NUMERIC, Rule 5)
+* BLOB (BLOB, Rule 3)
+* VARBINARY (NUMERIC, Rule 5)
 
 #### Additional types
 
-* BOOLEAN
-* INTERVAL
-* XML
+* BOOLEAN (NUMERIC, Rule 5)
+* INTERVAL (NUMERIC, Rule 5)
+* XML (NUMERIC, Rule 5)
 
 ### Reserved keyword reference
 
