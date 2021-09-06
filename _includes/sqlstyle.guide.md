@@ -31,6 +31,10 @@ Attribution-ShareAlike 4.0 International License][licence]."
 
 * Use consistent and descriptive identifiers and names.
 * Make judicious use of white space and indentation to make code easier to read.
+* Always use uppercase for the [reserved keywords][reserved-keywords]
+like `SELECT` and `WHERE`.
+* Use title case for schema object names (tables, views, etc)
+* Use lower case for column names
 * Store [ISO 8601][iso-8601] compliant time and date information
   (`YYYY-MM-DD HH:MM:SS.SSSSS`).
 * Try to only use standard SQL functions instead of vendor-specific functions for
@@ -152,9 +156,6 @@ and understood easily from SQL code. Use the correct suffix where appropriate.
 ## Query syntax
 
 ### Reserved words
-
-Always use uppercase for the [reserved keywords][reserved-keywords]
-like `SELECT` and `WHERE`.
 
 It is best to avoid the abbreviated keywords and use the full length ones where
 available (prefer `ABSOLUTE` to `ABS`).
