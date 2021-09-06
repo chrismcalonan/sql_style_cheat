@@ -434,7 +434,7 @@ CREATE TABLE staff (
 
 ### SQLite Afinities and Data Type Interpretation Rules
 
-SQLite uses the following types of "Afinity" values:
+SQLite uses the following types of "Affinity" values:
 
 * INTEGER
 * REAL
@@ -461,7 +461,7 @@ SQLite interprets data types via the following rules:
 ### Column data types
 
 These are some suggested column data types to use for maximum compatibility
-between database engines.  SQLite afinity (and rule) are in parenthesis.
+between database engines.  SQLite affinity (and rule) are in parenthesis.
 
 #### Character types:
 
