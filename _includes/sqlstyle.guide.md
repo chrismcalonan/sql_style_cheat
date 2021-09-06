@@ -47,12 +47,12 @@ like `SELECT` and `WHERE`.
 
 ```sql
 SELECT file_hash  -- stored ssdeep hash
-  FROM file_system
+  FROM File_System
  WHERE file_name = '.vimrc';
 ```
 ```sql
 /* Updating the file record after writing to the file */
-UPDATE file_system
+UPDATE File_System
    SET file_modified_date = '1980-02-22 13:19:01.00000',
        file_size = 209732
  WHERE file_name = '.vimrc';
@@ -88,7 +88,7 @@ UPDATE file_system
 
 ```sql
 SELECT first_name
-  FROM staff;
+  FROM Staff;
 ```
 
 ### Tables
@@ -120,13 +120,13 @@ SELECT first_name
 
 ```sql
 SELECT first_name AS fn
-  FROM staff AS s1
-  JOIN students AS s2
-    ON s2.mentor_id = s1.staff_num;
+  FROM Staff AS S1
+  JOIN Students AS S2
+    ON S2.mentor_id = S1.staff_num;
 ```
 ```sql
-SELECT SUM(s.monitor_tally) AS monitor_total
-  FROM staff AS s;
+SELECT SUM(S.monitor_tally) AS monitor_total
+  FROM Staff AS S;
 ```
 
 ### Stored procedures
@@ -165,8 +165,8 @@ exists performing the same function. This helps to make the code more portable.
 
 ```sql
 SELECT model_num
-  FROM phones AS p
- WHERE p.release_date > '2014-09-30';
+  FROM Phones AS P
+ WHERE P.release_date > '2014-09-30';
 ```
 
 ### White space
@@ -182,23 +182,23 @@ the readers eye to scan over the code and separate the keywords from the
 implementation detail. Rivers are [bad in typography][rivers], but helpful here.
 
 ```sql
-(SELECT f.species_name,
-        AVG(f.height) AS average_height, AVG(f.diameter) AS average_diameter
-   FROM flora AS f
-  WHERE f.species_name = 'Banksia'
-     OR f.species_name = 'Sheoak'
-     OR f.species_name = 'Wattle'
-  GROUP BY f.species_name, f.observation_date)
+(SELECT F.species_name,
+        AVG(F.height) AS average_height, AVG(F.diameter) AS average_diameter
+   FROM Flora AS F
+  WHERE F.species_name = 'Banksia'
+     OR F.species_name = 'Sheoak'
+     OR F.species_name = 'Wattle'
+  GROUP BY F.species_name, F.observation_date)
 
   UNION ALL
 
-(SELECT b.species_name,
-        AVG(b.height) AS average_height, AVG(b.diameter) AS average_diameter
-   FROM botanic_garden_flora AS b
-  WHERE b.species_name = 'Banksia'
-     OR b.species_name = 'Sheoak'
-     OR b.species_name = 'Wattle'
-  GROUP BY b.species_name, b.observation_date);
+(SELECT B.species_name,
+        AVG(B.height) AS average_height, AVG(B.diameter) AS average_diameter
+   FROM Botanic_Garden_Flora AS B
+  WHERE B.species_name = 'Banksia'
+     OR B.species_name = 'Sheoak'
+     OR B.species_name = 'Wattle'
+  GROUP BY B.species_name, B.observation_date);
 ```
 
 Notice that `SELECT`, `FROM`, etc. are all right aligned while the actual column
@@ -212,10 +212,10 @@ Although not exhaustive always include spaces:
   comma or semicolon.
 
 ```sql
-SELECT a.title, a.release_date, a.recording_date
-  FROM albums AS a
- WHERE a.title = 'Charcoal Lane'
-    OR a.title = 'The New Danger';
+SELECT A.title, A.release_date, A.recording_date
+  FROM Albums AS A
+ WHERE A.title = 'Charcoal Lane'
+    OR A.title = 'The New Danger';
 ```
 
 #### Line spacing
@@ -234,23 +234,23 @@ creates a uniform gap down the middle of the query. It also makes it much easier
 to quickly scan over the query definition.
 
 ```sql
-INSERT INTO albums (title, release_date, recording_date)
+INSERT INTO Albums (title, release_date, recording_date)
 VALUES ('Charcoal Lane', '1990-01-01 01:01:01.00000', '1990-01-01 01:01:01.00000'),
        ('The New Danger', '2008-01-01 01:01:01.00000', '1990-01-01 01:01:01.00000');
 ```
 
 ```sql
-UPDATE albums
+UPDATE Albums
    SET release_date = '1990-01-01 01:01:01.00000'
  WHERE title = 'The New Danger';
 ```
 
 ```sql
-SELECT a.title,
-       a.release_date, a.recording_date, a.production_date -- grouped dates together
-  FROM albums AS a
- WHERE a.title = 'Charcoal Lane'
-    OR a.title = 'The New Danger';
+SELECT A.title,
+       A.release_date, A.recording_date, A.production_date -- grouped dates together
+  FROM Albums AS A
+ WHERE A.title = 'Charcoal Lane'
+    OR A.title = 'The New Danger';
 ```
 
 ### Indentation
@@ -264,15 +264,15 @@ Joins should be indented to the other side of the river and grouped with a new
 line where necessary.
 
 ```sql
-SELECT r.last_name
-  FROM riders AS r
-       INNER JOIN bikes AS b
-       ON r.bike_vin_num = b.vin_num
-          AND b.engine_tally > 2
+SELECT R.last_name
+  FROM Riders AS R
+       INNER JOIN Bikes AS B
+       ON R.bike_vin_num = B.vin_num
+          AND B.engine_tally > 2
 
-       INNER JOIN crew AS c
-       ON r.crew_chief_last_name = c.last_name
-          AND c.chief = 'Y';
+       INNER JOIN Crew AS C
+       ON R.crew_chief_last_name = C.last_name
+          AND C.chief = 'Y';
 ```
 
 #### Subqueries
@@ -283,17 +283,17 @@ the closing parenthesis on a new line at the same character position as its
 opening partner—this is especially true where you have nested subqueries.
 
 ```sql
-SELECT r.last_name,
+SELECT R.last_name,
        (SELECT MAX(YEAR(championship_date))
-          FROM champions AS c
-         WHERE c.last_name = r.last_name
-           AND c.confirmed = 'Y') AS last_championship_year
-  FROM riders AS r
- WHERE r.last_name IN
-       (SELECT c.last_name
-          FROM champions AS c
+          FROM Champions AS C
+         WHERE C.last_name = R.last_name
+           AND C.confirmed = 'Y') AS last_championship_year
+  FROM Riders AS R
+ WHERE R.last_name IN
+       (SELECT C.last_name
+          FROM Champions AS C
          WHERE YEAR(championship_date) > '2008'
-           AND c.confirmed = 'Y');
+           AND C.confirmed = 'Y');
 ```
 
 ### Preferred formalisms
@@ -312,7 +312,7 @@ SELECT CASE postcode
        WHEN 'BN1' THEN 'Brighton'
        WHEN 'EH1' THEN 'Edinburgh'
        END AS city
-  FROM office_locations
+  FROM Office_Locations
  WHERE country = 'United Kingdom'
    AND opening_time BETWEEN 8 AND 9
    AND postcode IN ('EH1', 'BN1', 'NN1', 'KW1');
@@ -405,7 +405,7 @@ constraints along with field value validation.
 ##### Example
 
 ```sql
-CREATE TABLE staff (
+CREATE TABLE Staff (
     PRIMARY KEY (staff_num),
     staff_num      INT(5)       NOT NULL,
     first_name     VARCHAR(100) NOT NULL,
