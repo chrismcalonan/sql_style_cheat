@@ -477,13 +477,13 @@ between database engines.  SQLite affinity (and rule) are in parenthesis.
     * DECIMAL (NUMERIC, Rule 5)
         * DECIMAL(p) or DECIMAL(p,s)
         * p = precision (all digits)
-        * s = scale (digits left of decimal)
+        * s = scale (digits to the right of the decimal)
     * DECFLOAT (REAL, Rule 4)
     * INTEGER (INTEGER, Rule 1)
     * NUMERIC (NUMERIC, Rule 5)
         * NUMERIC(p) or NUMERIC(p,s)
         * p = precision (all digits)
-        * s = scale (digits left of decimal)
+        * s = scale (digits to the right of the decimal)
     * SMALLINT (INTEGER, Rule 1)
 * Approximate numeric types
     * DOUBLE PRECISION
