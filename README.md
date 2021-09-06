@@ -1,6 +1,6 @@
 # SQL style guide
 
-**[☛ Read the guide](https://github.com/chrismcalonan/sql_style_cheat/index.md)**
+**[☛ Read the guide](https://chrismcalonan.github.io/sql_style_cheat/)**
 
 ---
 
