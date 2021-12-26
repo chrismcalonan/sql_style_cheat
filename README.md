@@ -32,10 +32,3 @@ To then run it locally `bundle exec jekyll serve`
 ## Notable forks of the guide
 
 [Removed]
-
-## References
-
-[md-lang]: http://daringfireball.net/projects/markdown/
-[jekyll]: http://jekyllrb.com/
-[gh-pages]: https://pages.github.com/
-[gh-pages-help]: https://help.github.com/articles/setting-up-your-github-pages-site-locally-with-jekyll/
