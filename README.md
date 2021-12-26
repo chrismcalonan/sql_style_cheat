@@ -16,10 +16,7 @@ The markdown source for the guide can be found in [_includes/sqlstyle.guide.md][
 
 ## Installing for local development
 
-There is a Gemfile supplied so you just need to follow the
-[GitHub Pages documentation][gh-pages-help] to install the dependencies.
-
-To then run it locally `bundle exec jekyll serve`
+[Removed]
 
 ## Translations of the guide
 
