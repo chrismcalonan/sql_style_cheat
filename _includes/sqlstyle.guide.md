@@ -32,7 +32,7 @@ Attribution-ShareAlike 4.0 International License][licence]."
 * Use consistent and descriptive identifiers and names.
 * Make judicious use of white space and indentation to make code easier to read.
 * Store [ISO 8601][iso-8601] compliant time and date information
-  (`YYYY-MM-DD HH:MM:SS.SSSSS`).
+  (`YYYY-MM-DDTHH:MM:SSZ`).
 * Try to only use standard SQL functions instead of vendor-specific functions for
   reasons of portability.
 * Keep code succinct and devoid of redundant SQL—such as unnecessary quoting or
@@ -49,7 +49,7 @@ SELECT file_hash  -- stored ssdeep hash
 ```sql
 /* Updating the file record after writing to the file */
 UPDATE file_system
-   SET file_modified_date = '1980-02-22 13:19:01.00000',
+   SET file_modified_date = '1980-02-22T13:19:01Z',
        file_size = 209732
  WHERE file_name = '.vimrc';
 ```
@@ -260,19 +260,50 @@ are followed.
 #### Joins
 
 Joins should be indented to the other side of the river and grouped with a new
-line where necessary.
+line where necessary.  
+1. The table name should be on the next line from the join keyword 
+    (which is consistent with Joe Celko's SQL Programming Style, 
+    but different from Simon Holywell's SQL Style Guide).  
+ 
+same line WORKING.
 
 ```sql
 SELECT r.last_name
   FROM riders AS r
        INNER JOIN bikes AS b
-       ON r.bike_vin_num = b.vin_num
-          AND b.engine_tally > 2
+          ON r.bike_vin_num = b.vin_num
+         AND b.engine_tally > 2
 
-       INNER JOIN crew AS c
-       ON r.crew_chief_last_name = c.last_name
-          AND c.chief = 'Y';
+       LEFT OUTER JOIN crew AS c
+         ON r.crew_chief_last_name = c.last_name
+        AND c.chief = 'Y';
 ```
+
+```sql
+SELECT r.last_name
+  FROM riders AS r
+       INNER JOIN 
+       bikes AS b
+         ON r.bike_vin_num = b.vin_num
+        AND b.engine_tally > 2
+
+       LEFT OUTER JOIN
+       crew AS c
+         ON r.crew_chief_last_name = c.last_name
+        AND c.chief = 'Y';
+```
+
+##### ASOF Join Logic Note
+
+---------------------------
+| Inequality | Interval   |
+---------------------------
+|     >      | (Tn, Tn+1] |
+|     >=     | [Tn, Tn+1) |
+|     <=     | (Tn-1, Tn] |
+|     <      | [Tn-1, Tn) |
+---------------------------
+
 
 #### Subqueries
 
