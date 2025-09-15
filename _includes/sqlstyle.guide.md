@@ -295,13 +295,32 @@ SELECT r.last_name
 
 ##### ASOF Join Logic Note
 
+```sql
+  FROM query AS q
+       ASOF JOIN
+       events as e
+          ON q.id = e.id
+         AND q.t < e.t;
+```
+
+WORKING
+
+| Inequality | Interval   |
+| ---------- | -----------|
+|   q <  e   | (Te, Te+1] |
+|   q <= e   | [Te, Te+1) |
+|   q >= e   | (Te-1, Te] |
+|   q >  e   | [Te-1, Te) |
+
+
+ORIGINAL
+
 | Inequality | Interval   |
 | ---------- | -----------|
 |     >      | (Tn, Tn+1] |
 |     >=     | [Tn, Tn+1) |
 |     <=     | (Tn-1, Tn] |
 |     <      | [Tn-1, Tn) |
-
 
 #### Subqueries
 
